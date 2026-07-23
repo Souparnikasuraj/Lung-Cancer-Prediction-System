@@ -1,0 +1,138 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<style>
+  /* Glass container */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 50px;
+    color: white;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: 0.3s ease;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-8px);
+    border: 1px solid #00ffcc;
+    box-shadow: 0 10px 30px rgba(0, 255, 204, 0.2);
+  }
+
+  /* Result animation */
+  .result-text {
+    font-size: 36px;
+    font-weight: 700;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .low-risk {
+    color: #00e676;
+    text-shadow: 0 0 10px rgba(0, 230, 118, 0.5);
+  }
+
+  .high-risk {
+    color: #ff4d4d;
+    text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+  }
+
+  /* Best model highlight */
+  .best-model {
+    font-size: 26px;
+    font-weight: 600;
+    color: #00ffcc;
+  }
+
+  /* Table styling */
+  .custom-table {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .custom-table thead {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+  }
+
+  .custom-table tbody tr {
+    background: rgba(255, 255, 255, 0.05);
+    transition: 0.3s;
+  }
+
+  .custom-table tbody tr:hover {
+    background: rgba(0, 255, 204, 0.1);
+    transform: scale(1.01);
+  }
+
+  /* Highlight best row */
+  .best-row {
+    background: rgba(0, 255, 204, 0.2) !important;
+    font-weight: 600;
+  }
+
+  /* Button */
+  .btn-custom {
+    border-radius: 30px;
+    padding: 10px 25px;
+    font-size: 18px;
+  }
+
+  /* Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+</style>
+
+<div class="container mt-5 mb-5">
+
+  <div class="glass-card">
+
+    <h2 class="mb-3">Prediction Result</h2>
+
+    <h3 class="result-text {% if 'High' in result %}high-risk{% else %}low-risk{% endif %}">
+      {{ result }}
+    </h3>
+
+    <hr style="border-color: rgba(255,255,255,0.2);">
+
+    <h5>Best Model Used</h5>
+    <h4 class="best-model">{{ best_model }}</h4>
+
+    <h5 class="mt-4">Model Accuracy Comparison</h5>
+
+    <table class="table custom-table text-center">
+      <thead>
+        <tr>
+          <th>Algorithm</th>
+          <th>Accuracy (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for name, acc in accuracies.items %}
+        <tr class="{% if name == best_model %}best-row{% endif %}">
+          <td>{{ name }}</td>
+          <td>{{ acc }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <a href="{% url 'predict' %}" class="btn btn-success btn-custom mt-4">
+       Try Again
+    </a>
+
+  </div>
+
+</div>
+
+{% endblock %}

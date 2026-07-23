@@ -1,0 +1,182 @@
+{% extends 'home.html' %} {% block content %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+<style>
+  body {
+    body {
+      /* Background image from home page */
+      background-image: url("/static/images/your-background.jpg"); /* use your actual image path */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      /* Overlay gradient to make content readable */
+      background-blend-mode: overlay;
+      background-color: rgba(
+        15,
+        32,
+        39,
+        0.6
+      ); /* dark overlay, adjust opacity */
+
+      min-height: 100vh;
+      font-family: sans-serif;
+    }
+  }
+
+  .about-container {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 50px;
+    color: white;
+    text-align: center;
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 32px;
+  }
+
+  .subtitle {
+    color: #d1d1d1;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .highlight {
+    color: #00ffcc;
+    font-weight: 600;
+  }
+
+  /* Cards */
+  .feature-card {
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    transition: 0.3s;
+    height: 100%;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-10px);
+    border: 1px solid #00ffcc;
+  }
+
+  .icon {
+    font-size: 40px;
+    color: #00ffcc;
+    margin-bottom: 15px;
+  }
+
+  .section-title {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: #00ffcc;
+    text-align: center;
+  }
+</style>
+
+<div class="container about-container">
+  <!-- HERO SECTION -->
+  <div class="glass mb-5 feature-card">
+    <h2 class="title">About LungCare AI</h2>
+    <p class="subtitle mt-3">
+      <span class="highlight">LungCare AI</span> is a machine learning-powered
+      system designed to assist in early detection of lung cancer by analyzing
+      user health and lifestyle data. Our goal is to make prediction fast,
+      accessible, and reliable.
+    </p>
+  </div>
+
+  <!-- VISION TEXT -->
+  <div class="glass mb-5 feature-card">
+    <p class="subtitle">
+      We aim to build a future where early detection of lung cancer becomes
+      simple and accessible. By combining
+      <span class="highlight">Artificial Intelligence</span>
+      with healthcare, we strive to support better decision-making and improve
+      lives.
+    </p>
+  </div>
+
+  <!-- FEATURE CARDS -->
+  <h4 class="section-title">What We Focus On</h4>
+
+  <div class="row g-4">
+    <div class="col-md-3">
+      <div class="feature-card">
+        <div class="icon"><i class="fas fa-brain"></i></div>
+        <h5>AI Prediction</h5>
+        <p>
+          Using machine learning models to predict lung cancer risk efficiently.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="feature-card">
+        <div class="icon"><i class="fas fa-globe"></i></div>
+        <h5>Accessibility</h5>
+        <p>Providing an easy-to-use platform for users everywhere.</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="feature-card">
+        <div class="icon"><i class="fas fa-heartbeat"></i></div>
+        <h5>Health Impact</h5>
+        <p>Helping users take early action and improve health outcomes.</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="feature-card">
+        <div class="icon"><i class="fas fa-microscope"></i></div>
+        <h5>Research Driven</h5>
+        <p>Built using data-driven insights and ML experimentation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <h4 class="section-title">How It Works</h4>
+
+  <div class="glass">
+    <p>
+      Users input details such as age, smoking habits, and lifestyle factors.
+      The system processes this data using trained models like
+      <span class="highlight">Logistic Regression</span> and
+      <span class="highlight">Random Forest</span> to predict lung cancer risk.
+    </p>
+  </div>
+
+  <!-- TECH STACK -->
+  <h4 class="section-title">Technologies Used</h4>
+
+  <div class="glass">
+    <p>
+      <span class="highlight">Frontend:</span> HTML, CSS, Bootstrap <br />
+      <span class="highlight">Backend:</span> Django (Python) <br />
+      <span class="highlight">Machine Learning:</span> Scikit-learn <br />
+      <span class="highlight">Database:</span> SQLite
+    </p>
+  </div>
+
+  <!-- CTA -->
+  <div class="text-center mt-5">
+    <a href="/predict" class="btn btn-success px-4 py-2">Try Prediction</a>
+  </div>
+</div>
+
+{% endblock %}

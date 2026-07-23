@@ -1,0 +1,206 @@
+{% extends 'home.html' %} {% block content %}
+
+<style>
+  .predict-card {
+    border-radius: 20px;
+    background: #ffffff94;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 900px; /* keeps card from stretching */
+    margin: 20px auto; /* space from top + center horizontally */
+    padding: 30px;
+  }
+
+  .title {
+    font-weight: 700;
+    color: #2c3e50;
+  }
+
+  .form-label {
+    font-weight: 500;
+    color: #2c3e50;
+  }
+
+  .btn-custom {
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-size: 18px;
+  }
+
+  .section-title {
+    font-weight: 600;
+    margin-top: 25px;
+    color: #4b77a3;
+  }
+</style>
+
+<div class="container mt-5 mb-5">
+  <div class="predict-card p-5">
+    <h2 class="text-center title mb-4">Lung Cancer Prediction</h2>
+
+    <form method="POST">
+      {% csrf_token %}
+
+      <div class="row">
+        <!-- BASIC -->
+        <h5 class="section-title">Basic Details</h5>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Gender</label>
+          <select class="form-select" name="gender" required>
+            <option disabled selected>Select</option>
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Age</label>
+          <input
+            type="number"
+            class="form-control"
+            name="age"
+            placeholder="Enter age"
+            required
+          />
+        </div>
+
+        <!-- LIFESTYLE -->
+        <h5 class="section-title">Lifestyle</h5>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Smoking</label>
+          <select class="form-select" name="smoking" required>
+            <option disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Alcohol</label>
+          <select class="form-select" name="alcohol" required>
+            <option disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Peer Pressure</label>
+          <select class="form-select" name="peer_pressure" required>
+            <option disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <!-- SYMPTOMS -->
+        <h5 class="section-title">Symptoms</h5>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Coughing</label>
+          <select class="form-select" name="coughing" required>
+            <option disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Shortness of Breath</label>
+          <select class="form-select" name="short_breath" required>
+            <option disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Chest Pain</label>
+          <select class="form-select" name="chest_pain" required>
+            <option disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Wheezing</label>
+          <select class="form-select" name="wheezing" required>
+            <option disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <!-- HEALTH -->
+        <h5 class="section-title">Health Conditions</h5>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Chronic Disease</label>
+          <select class="form-select" name="chronic_disease" required>
+            <option disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Fatigue</label>
+          <select class="form-select" name="fatigue" required>
+            <option disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Allergy</label>
+          <select class="form-select" name="allergy" required>
+            <option disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <!-- EXTRA -->
+        <h5 class="section-title">Other Factors</h5>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Yellow Fingers</label>
+          <select class="form-select" name="yellow_fingers" required>
+            <option disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Anxiety</label>
+          <select class="form-select" name="anxiety" required>
+            <option disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Swallowing Difficulty</label>
+          <select class="form-select" name="swallowing" required>
+            <option disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success btn-custom">
+          Predict Now
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
